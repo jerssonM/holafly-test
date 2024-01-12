@@ -33,24 +33,23 @@ model User {
   UserPlan UserPlan[]
 }
 
-model Consumption {
-  id               Int       @id @default(autoincrement())
-  totalConsumption Int
-  UserPlan         UserPlan?
-  UserPlanId       Int?      @unique
+model UserPlan {
+  id          Int          @id @default(autoincrement())
+  status      String
+  dateStart   DateTime
+  dateEnd     DateTime
+  Plan        Plan         @relation(fields: [planId], references: [id])
+  country     Country      @relation(fields: [countryId], references: [id])
+  User        User         @relation(fields: [userId], references: [id])
+  Consumption Consumption?
+  userId      Int
+  countryId   Int
+  planId      Int
 }
 
-model UserPlan {
-  id            Int          @id @default(autoincrement())
-  status        String
-  dateStart     DateTime
-  dateEnd       DateTime
-  Plan          Plan         @relation(fields: [planId], references: [id])
-  country       Country      @relation(fields: [countryId], references: [id])
-  Consumption   Consumption? @relation(fields: [consumptionId], references: [id])
-  User          User         @relation(fields: [userId], references: [id])
-  consumptionId Int?         @unique
-  userId        Int
-  countryId     Int
-  planId        Int
+model Consumption {
+  id               Int      @id @default(autoincrement())
+  totalConsumption Int
+  UserPlan         UserPlan @relation(fields: [userPlanId], references: [id])
+  userPlanId       Int      @unique
 }

@@ -1,4 +1,4 @@
-import { PrismaClient, UserPlan } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { countries, plans, users, usersPlans } from "./data";
 
 const prisma = new PrismaClient();
@@ -9,8 +9,10 @@ async function main() {
   );
   const plansCreation = plans.map((plan) => prisma.plan.create({ data: plan }));
   const usersCreation = users.map((user) => prisma.user.create({ data: user }));
-  const userPlansCreation = usersPlans.map((userPlan) =>
-    prisma.userPlan.create({ data: userPlan as unknown as UserPlan })
+  const userPlansCreation = usersPlans.map(({ Consumption, ...userPlan }) =>
+    prisma.userPlan.create({
+      data: { ...userPlan, Consumption: { create: Consumption } },
+    })
   );
 
   await Promise.all(countriesCreation);
