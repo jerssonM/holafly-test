@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Models
+
+model Country {
+  id       Int        @id @default(autoincrement())
+  name     String
+  flagUrl  String
+  UserPlan UserPlan[]
+}
+
+model Plan {
+  id       Int        @id @default(autoincrement())
+  name     String
+  UserPlan UserPlan[]
+}
+
+model User {
+  id       Int        @id @default(autoincrement())
+  email    String     @unique
+  name     String
+  password String
+  UserPlan UserPlan[]
+}
+
+model Consumption {
+  id               Int       @id @default(autoincrement())
+  totalConsumption Int
+  UserPlan         UserPlan?
+  UserPlanId       Int?      @unique
+}
+
+model UserPlan {
+  id            Int          @id @default(autoincrement())
+  status        String
+  dateStart     DateTime
+  dateEnd       DateTime
+  Plan          Plan         @relation(fields: [planId], references: [id])
+  country       Country      @relation(fields: [countryId], references: [id])
+  Consumption   Consumption? @relation(fields: [consumptionId], references: [id])
+  User          User         @relation(fields: [userId], references: [id])
+  consumptionId Int?         @unique
+  userId        Int
+  countryId     Int
+  planId        Int
+}
