@@ -29,8 +29,16 @@ export const plans = [
 ];
 
 export const users = [
-  { email: "jersson@test.com", name: "Jersson", password: "123" },
-  { email: "carlos@test.com", name: "Carlos", password: "123" },
+  {
+    email: "jersson@test.com",
+    name: "Jersson",
+    password: "$2b$04$Vmh/Yq3OhQPJxfUZy0U87Oa/C12ysZfJU929kEZRMNBMcZomVhaOO",
+  },
+  {
+    email: "carlos@test.com",
+    name: "Carlos",
+    password: "$2b$04$ZB5l3al2Bs1uvtJwKkpeJ.8p0n7wVlbvci/S147k20oeTu0RP1JmK",
+  },
 ];
 
 export const usersPlans = [
@@ -48,7 +56,7 @@ export const usersPlans = [
     dateEnd: "2024-07-09T14:41:18Z",
     countryId: 3,
     status: "Pending",
-    Consumption: { totalConsumption: 80 },
+    consumption: { totalConsumption: 80 },
     userId: 2,
   },
   {
@@ -65,7 +73,7 @@ export const usersPlans = [
     dateEnd: "2024-04-30T22:15:55Z",
     countryId: 4,
     status: "Active",
-    Consumption: { totalConsumption: 60 },
+    consumption: { totalConsumption: 60 },
     userId: 2,
   },
   {
@@ -82,7 +90,7 @@ export const usersPlans = [
     dateEnd: "2024-01-29T15:34:55Z",
     countryId: 1,
     status: "Active",
-    Consumption: { totalConsumption: 40 },
+    consumption: { totalConsumption: 40 },
     userId: 1,
   },
   {
@@ -91,7 +99,7 @@ export const usersPlans = [
     dateEnd: "2024-04-11T02:50:06Z",
     countryId: 2,
     status: "Active",
-    Consumption: { totalConsumption: 100 },
+    consumption: { totalConsumption: 100 },
     userId: 1,
   },
   {
@@ -116,7 +124,7 @@ export const usersPlans = [
     dateEnd: "2024-10-18T21:24:12Z",
     countryId: 1,
     status: "Pending",
-    Consumption: { totalConsumption: 10 },
+    consumption: { totalConsumption: 10 },
     userId: 1,
   },
   {
@@ -125,7 +133,7 @@ export const usersPlans = [
     dateEnd: "2024-05-28T18:20:42Z",
     countryId: 3,
     status: "Active",
-    Consumption: { totalConsumption: 42 },
+    consumption: { totalConsumption: 42 },
     userId: 2,
   },
   {
@@ -134,7 +142,7 @@ export const usersPlans = [
     dateEnd: "2024-07-06T20:03:47Z",
     countryId: 1,
     status: "Active",
-    Consumption: { totalConsumption: 40 },
+    consumption: { totalConsumption: 40 },
     userId: 2,
   },
   {
@@ -151,7 +159,7 @@ export const usersPlans = [
     dateEnd: "2024-09-08T04:23:23Z",
     countryId: 3,
     status: "Active",
-    Consumption: { totalConsumption: 22 },
+    consumption: { totalConsumption: 22 },
     userId: 1,
   },
   {
@@ -160,7 +168,7 @@ export const usersPlans = [
     dateEnd: "2024-09-19T03:55:19Z",
     countryId: 1,
     status: "Pending",
-    Consumption: { totalConsumption: 0 },
+    consumption: { totalConsumption: 0 },
     userId: 1,
   },
   {
@@ -169,7 +177,7 @@ export const usersPlans = [
     dateEnd: "2024-01-30T05:57:48Z",
     countryId: 2,
     status: "Active",
-    Consumption: { totalConsumption: 65 },
+    consumption: { totalConsumption: 65 },
     userId: 2,
   },
   {
@@ -178,7 +186,7 @@ export const usersPlans = [
     dateEnd: "2024-06-17T20:25:06Z",
     countryId: 1,
     status: "Pending",
-    Consumption: { totalConsumption: 5 },
+    consumption: { totalConsumption: 5 },
     userId: 1,
   },
   {
@@ -203,7 +211,7 @@ export const usersPlans = [
     dateEnd: "2024-06-23T04:31:07Z",
     countryId: 4,
     status: "Pending",
-    Consumption: { totalConsumption: 51 },
+    consumption: { totalConsumption: 51 },
     userId: 1,
   },
 ];

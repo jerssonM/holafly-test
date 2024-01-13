@@ -9,9 +9,9 @@ async function main() {
   );
   const plansCreation = plans.map((plan) => prisma.plan.create({ data: plan }));
   const usersCreation = users.map((user) => prisma.user.create({ data: user }));
-  const userPlansCreation = usersPlans.map(({ Consumption, ...userPlan }) =>
+  const userPlansCreation = usersPlans.map(({ consumption, ...userPlan }) =>
     prisma.userPlan.create({
-      data: { ...userPlan, Consumption: { create: Consumption } },
+      data: { ...userPlan, consumption: { create: consumption } },
     })
   );
 

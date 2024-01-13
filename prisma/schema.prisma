@@ -16,13 +16,13 @@ model Country {
   id       Int        @id @default(autoincrement())
   name     String
   flagUrl  String
-  UserPlan UserPlan[]
+  userPlan UserPlan[]
 }
 
 model Plan {
   id       Int        @id @default(autoincrement())
   name     String
-  UserPlan UserPlan[]
+  userPlan UserPlan[]
 }
 
 model User {
@@ -30,7 +30,7 @@ model User {
   email    String     @unique
   name     String
   password String
-  UserPlan UserPlan[]
+  userPlan UserPlan[]
 }
 
 model UserPlan {
@@ -38,10 +38,10 @@ model UserPlan {
   status      String
   dateStart   DateTime
   dateEnd     DateTime
-  Plan        Plan         @relation(fields: [planId], references: [id])
+  plan        Plan         @relation(fields: [planId], references: [id])
   country     Country      @relation(fields: [countryId], references: [id])
-  User        User         @relation(fields: [userId], references: [id])
-  Consumption Consumption?
+  user        User         @relation(fields: [userId], references: [id])
+  consumption Consumption?
   userId      Int
   countryId   Int
   planId      Int
@@ -50,6 +50,6 @@ model UserPlan {
 model Consumption {
   id               Int      @id @default(autoincrement())
   totalConsumption Int
-  UserPlan         UserPlan @relation(fields: [userPlanId], references: [id])
+  userPlan         UserPlan @relation(fields: [userPlanId], references: [id])
   userPlanId       Int      @unique
 }
