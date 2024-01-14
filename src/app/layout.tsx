@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 import { GlobalProvider } from "@/lib/providers/global-provider";
 
@@ -18,6 +19,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
     <html lang="en">
       <body className={clsx(inter.className, "bg-slate-200")}>
         <GlobalProvider>{children}</GlobalProvider>
+        <Analytics />
       </body>
     </html>
   );
