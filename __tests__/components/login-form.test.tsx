@@ -6,7 +6,7 @@ import { LoginForm } from "@/lib/components/login-form";
 describe("<LoginForm />", () => {
   it("Should call login method", async () => {
     const spyOnLogin = vi.fn();
-    render(<LoginForm showErrorMessage onLogin={spyOnLogin} />);
+    render(<LoginForm onLogin={spyOnLogin} />);
 
     const inputEmail = screen.getByTestId("login-form__email-input");
     const inputPassword = screen.getByTestId("login-form__password-input");
@@ -26,7 +26,7 @@ describe("<LoginForm />", () => {
   });
 
   it("Should show error message", () => {
-    render(<LoginForm showErrorMessage onLogin={vi.fn()} />);
+    render(<LoginForm hasError onLogin={vi.fn()} />);
 
     expect(
       screen.getAllByText(

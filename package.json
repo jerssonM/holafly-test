@@ -1,6 +1,9 @@
 {
   "name": "holafly-test",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jersson Morales"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

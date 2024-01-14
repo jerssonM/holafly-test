@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   Label,
+  Spinner,
   Tag,
   TextInput,
   TextInputProps,
@@ -18,13 +19,15 @@ import { Credentials } from "../../services/models";
 import { LoginPayload, schema } from "./login-form-schema";
 
 interface LoginFormProps {
-  showErrorMessage: boolean;
+  hasError?: boolean;
+  isLoading?: boolean;
   onLogin: (credentials: Credentials) => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({
   onLogin,
-  showErrorMessage,
+  hasError,
+  isLoading,
 }) => {
   const form = useForm<LoginPayload>({
     mode: "onTouched",
@@ -48,7 +51,6 @@ export const LoginForm: FC<LoginFormProps> = ({
       onLogin(form.getValues());
     }
   };
-  console.log(form.getValues(), "values");
 
   return (
     <Card className="p-4">
@@ -99,7 +101,7 @@ export const LoginForm: FC<LoginFormProps> = ({
             )}
           />
         </div>
-        {showErrorMessage && (
+        {hasError && (
           <Tag color="error">
             Your email or password is incorrect. Please check your credentials
             and try again.
@@ -109,8 +111,13 @@ export const LoginForm: FC<LoginFormProps> = ({
           width="full"
           type="outlinePrimary"
           onClick={handleSave}
-          disabled={!form.formState.isValid}
+          disabled={!form.formState.isValid || isLoading}
         >
+          {isLoading && (
+            <span className="pr-2">
+              <Spinner color="info" size="md" />
+            </span>
+          )}
           Login
         </Button>
       </Card.Container>
