@@ -15,6 +15,7 @@ export const POST = async (request: NextRequest) => {
       email: credentials.email,
     },
   });
+  console.error(user, credentials, "on-login");
 
   if (user) {
     const isPasswordValid = await compare(credentials.password, user.password);
