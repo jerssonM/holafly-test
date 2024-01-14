@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { hash, compare } from "bcrypt";
+import { compare } from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
 import { Credentials } from "@/lib/services/models";
@@ -15,7 +15,6 @@ export const POST = async (request: NextRequest) => {
       email: credentials.email,
     },
   });
-  console.error(user, credentials, "on-login");
 
   if (user) {
     const isPasswordValid = await compare(credentials.password, user.password);
