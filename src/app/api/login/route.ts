@@ -1,11 +1,8 @@
-import jwt from "jsonwebtoken";
 import { compare } from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
-import { Credentials } from "@/lib/services/models";
 import prisma from "@/lib/config/prisma";
-
-const secretKey = process.env.NEXTAUTH_SECRET as string;
+import { Credentials } from "@/lib/services/models";
 
 export const POST = async (request: NextRequest) => {
   const credentials: Credentials = await request.json();
@@ -18,13 +15,10 @@ export const POST = async (request: NextRequest) => {
 
   if (user) {
     const isPasswordValid = await compare(credentials.password, user.password);
-    const token = jwt.sign({ id: user.id, email: user.email }, secretKey, {
-      expiresIn: "2h",
-    });
     // @ts-ignore
     delete user.password;
 
-    if (isPasswordValid) return NextResponse.json({ user, token });
+    if (isPasswordValid) return NextResponse.json(user);
   }
 
   return NextResponse.json(null);

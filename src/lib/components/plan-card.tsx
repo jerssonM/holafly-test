@@ -2,10 +2,10 @@ import clsx from "clsx";
 import { FC } from "react";
 import Image from "next/image";
 import { DateTime } from "luxon";
+import { Lightning } from "phosphor-react";
 import { Button, Card, Progress } from "keep-react";
 
 import { Plan, PlanStatus } from "../services/models";
-import { Lightning } from "phosphor-react";
 
 interface PlanCardProps {
   plan: Plan;
@@ -82,7 +82,7 @@ export const PlanCard: FC<PlanCardProps> = ({ plan }) => {
               size="sm"
               width="full"
               type="primary"
-              className="bg-rose-500"
+              className="bg-rose-500 hover:bg-rose-400"
             >
               View details and install
             </Button>
@@ -96,7 +96,7 @@ export const PlanCard: FC<PlanCardProps> = ({ plan }) => {
                 size="sm"
                 width="full"
                 type="primary"
-                className="bg-green-500 text-black"
+                className="bg-green-500 text-black hover:bg-green-400"
               >
                 <span className="pr-2">
                   <Lightning size={24} />

@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { ROUTES } from "@/lib/constants";
-import { login } from "@/lib/services/login.service";
+import { login } from "@/lib/services/auth.service";
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -27,13 +27,12 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         const response = await login(credentials!);
 
-        if (!response?.user) return null;
+        if (!response) return null;
 
         return {
-          id: String(response.user.id),
-          email: response.user.email,
-          name: response.user.name,
-          token: response.token,
+          id: String(response.id),
+          email: response.email,
+          name: response.name,
         };
       },
     }),

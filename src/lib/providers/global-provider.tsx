@@ -9,7 +9,12 @@ import {
 } from "react-query";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
-const getClient = () => new QueryClient();
+const getClient = () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: { refetchOnMount: false, refetchOnWindowFocus: false },
+    },
+  });
 
 export const GlobalProvider: FC<PropsWithChildren> = ({ children }) => {
   const [queryClient] = useState(getClient);

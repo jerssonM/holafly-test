@@ -9,9 +9,9 @@ import { ROUTES } from "../constants";
 export const Navbar = () => {
   const router = useRouter();
 
-  const onSignOut = async () => {
-    await signOut({ redirect: false });
-    router.push(ROUTES.HOME);
+  const onSignOut = () => {
+    signOut({ redirect: false });
+    router.push(ROUTES.LOGIN);
   };
 
   return (

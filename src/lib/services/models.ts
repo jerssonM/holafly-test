@@ -16,11 +16,6 @@ export interface User {
   email: string;
 }
 
-export interface LoginResponse {
-  user: User;
-  token: string;
-}
-
 export interface Plan extends UserPlan {
   country: Country;
   plan: PrismaPlan;

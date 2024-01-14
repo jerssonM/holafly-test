@@ -8,7 +8,7 @@ import {
   TextInputProps,
 } from "keep-react";
 import Image from "next/image";
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback } from "react";
 import { Envelope } from "phosphor-react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,12 +20,10 @@ import { LoginPayload, schema } from "./login-form-schema";
 interface LoginFormProps {
   showErrorMessage: boolean;
   onLogin: (credentials: Credentials) => void;
-  onTouchForm?: () => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({
   onLogin,
-  onTouchForm,
   showErrorMessage,
 }) => {
   const form = useForm<LoginPayload>({
@@ -37,7 +35,6 @@ export const LoginForm: FC<LoginFormProps> = ({
   const inputProps = useCallback(
     (key: keyof LoginPayload): TextInputProps => ({
       id: key,
-      sizing: "lg",
       addonPosition: "left",
       color: form.formState.errors[key]?.message ? "error" : "default",
       withBg: !!form.formState.errors[key]?.message,
@@ -51,12 +48,7 @@ export const LoginForm: FC<LoginFormProps> = ({
       onLogin(form.getValues());
     }
   };
-
-  useEffect(() => {
-    if (showErrorMessage && onTouchForm) {
-      onTouchForm();
-    }
-  }, [form.formState]);
+  console.log(form.getValues(), "values");
 
   return (
     <Card className="p-4">
@@ -79,6 +71,7 @@ export const LoginForm: FC<LoginFormProps> = ({
                 color={
                   form.formState.errors.email?.message ? "error" : "default"
                 }
+                data-testid="login-form__email-input"
                 placeholder="email@domain.com"
                 addon={<Envelope size={20} className="text-gray-400" />}
                 handleOnChange={onChange}
@@ -96,6 +89,7 @@ export const LoginForm: FC<LoginFormProps> = ({
             control={form.control}
             render={({ field: { onChange, ...field } }) => (
               <InputPassword
+                data-testid="login-form__password-input"
                 placeholder="********"
                 handleOnChange={onChange}
                 helperText={form.formState.errors.password?.message}

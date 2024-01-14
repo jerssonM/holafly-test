@@ -4,8 +4,8 @@ import { NextPage } from "next";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { LoginForm } from "@/lib/components/login-form";
 import { Credentials } from "@/lib/services/models";
+import { LoginForm } from "@/lib/components/login-form";
 
 import { ROUTES } from "../constants";
 
@@ -14,6 +14,7 @@ export const LoginContainer: NextPage = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const handleLogin = async (credentials: Credentials) => {
+    setShowErrorMessage(false);
     const response = await signIn("credentials", {
       redirect: false,
       ...credentials,
@@ -26,12 +27,8 @@ export const LoginContainer: NextPage = () => {
   };
 
   return (
-    <div className="w-1/2">
-      <LoginForm
-        onLogin={handleLogin}
-        showErrorMessage={showErrorMessage}
-        onTouchForm={() => setShowErrorMessage(false)}
-      />
+    <div className="md:w-1/2">
+      <LoginForm onLogin={handleLogin} showErrorMessage={showErrorMessage} />
     </div>
   );
 };

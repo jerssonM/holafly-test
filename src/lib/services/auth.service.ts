@@ -1,12 +1,12 @@
 import { axiosInstance } from "./axios-instance";
-import { Credentials, LoginResponse } from "./models";
+import { Credentials, User } from "./models";
 
 export const login = async (credentials: Credentials) => {
-  const { data: response } = await axiosInstance.post<LoginResponse>(
+  const { data: response } = await axiosInstance.post<User>(
     "login",
     credentials
   );
-  if (!response?.token) {
+  if (!response) {
     return null;
   }
 
