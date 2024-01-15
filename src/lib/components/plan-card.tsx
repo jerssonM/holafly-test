@@ -2,10 +2,11 @@ import clsx from "clsx";
 import { FC } from "react";
 import Image from "next/image";
 import { DateTime } from "luxon";
+import { Button, Card } from "keep-react";
 import { Lightning } from "phosphor-react";
-import { Button, Card, Progress } from "keep-react";
 
 import { Plan, PlanStatus } from "../services/models";
+import { ConsumptionPercentage } from "./consumption-percentage";
 
 interface PlanCardProps {
   plan: Plan;
@@ -21,8 +22,8 @@ export const PlanCard: FC<PlanCardProps> = ({ plan }) => {
   }
 
   return (
-    <Card className="h-full p-8">
-      <Card.Title>
+    <Card className="h-full p-8 relative">
+      <Card.Title className="mb-2">
         <div
           className={clsx(
             "flex gap-4 w-fit py-1 pr-2 rounded-md justify-space-between",
@@ -48,6 +49,11 @@ export const PlanCard: FC<PlanCardProps> = ({ plan }) => {
         </div>
       </Card.Title>
       <Card.Container className="grid flex-1">
+        {plan.status === PlanStatus.Active && (
+          <div className="absolute top-3 right-4">
+            <ConsumptionPercentage percentage={20} />
+          </div>
+        )}
         <div className="flex flex-col gap-2">
           <p className="flex justify-between font-bold">
             {plan.country.name}
@@ -58,14 +64,6 @@ export const PlanCard: FC<PlanCardProps> = ({ plan }) => {
             )}
           </p>
           <p className="text-sm">{plan.plan.name}</p>
-          {plan.status === PlanStatus.Active && (
-            <Progress
-              rounded
-              color="info"
-              labelProgress
-              progress={plan.consumption?.totalConsumption || 0}
-            />
-          )}
           {plan.status === PlanStatus.Expired && (
             <p className="text-sm">
               {DateTime.fromISO(plan.dateStart.toString()).toFormat(

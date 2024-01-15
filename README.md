@@ -4,11 +4,13 @@ This project was built using Next.js 13 as a full-stack framework, leveraging th
 
 The project features an initial login page where we can access the system using specific user credentials:
 
-> Jersson | email: jersson@test.com - password: holafly-test-jersson
+> Jersson | email: jersson@test.com - password: **holafly**-test-jersson
 
 > Carlos | email: carlos@test.com - password: holafly-test-carlos
 
 Following the successful login, we are directed to the homepage where we can view, through card interfaces, the various plans that the user has subscribed to.
+
+The project and the Postgres database are hosted through Vercel.
 
 ## Building with:
 
@@ -18,9 +20,14 @@ Following the successful login, we are directed to the homepage where we can vie
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=**white**)
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 ## Project structure
 
+    ├──__tests__           # unit tests
     src
     ├── app                # Next.js 13 app route folder
     ├────── api            # Next.js api's (nextauth & local api's)
@@ -32,9 +39,10 @@ Following the successful login, we are directed to the homepage where we can vie
     ├───-─- providers      # provider components
     └───-─- services       # api services and axios instances
     └───-─- styles         # global css files and tailwind config
+
 ## Project setup
 
-Create a .env file and include the values that are indicated in the .env.example
+Create a .env file, set the correct node version and include the values that are indicated in the .env.example
 
 > Run project with yarn dev
 
